@@ -34,19 +34,25 @@ const Keyboard = {
           fragment.appendChild(key);
           break;
         case 'Backspace':
-        case 'CapsLock':
-        case 'Shift':
-        case 'Enter':  
           key = document.createElement('button');
           keyContent = document.createTextNode(el);
           key.classList.add('keyboard__key', 'keyboard__key_size-3');
           key.appendChild(keyContent);
           fragment.appendChild(key);
           break;
-        case 'Space':  
+        case 'CapsLock':
+        case 'Shift':
+        case 'Enter':  
           key = document.createElement('button');
           keyContent = document.createTextNode(el);
           key.classList.add('keyboard__key', 'keyboard__key_size-4');
+          key.appendChild(keyContent);
+          fragment.appendChild(key);
+          break;
+        case 'Space':  
+          key = document.createElement('button');
+          keyContent = document.createTextNode(el);
+          key.classList.add('keyboard__key', 'keyboard__key_size-5');
           key.appendChild(keyContent);
           fragment.appendChild(key);
           break;
@@ -68,7 +74,7 @@ const Keyboard = {
     });
     this.elements.main.appendChild(fragment);
   },
-  
+
 }
 
 window.onload = function() { 

@@ -1,7 +1,7 @@
 .keyboard {
-  width: 80%;
-  max-width: 800px;
+  width: 815px;
   margin: 0 auto;
+  padding: 15px 10px;
   background-color: $color-primary;
   border: 1px solid $color-border;
   border-radius: 5px;
@@ -34,10 +34,14 @@
   }
 
   &_size-3 {
-    width: $key-width * 2;
+    width: $key-width * 2.62;
   }
 
   &_size-4 {
-    width: $key-width * 8;
+    width: $key-width * 2.38;
+  }
+
+  &_size-5 {
+    width: $key-width * 8.29;
   }
 }

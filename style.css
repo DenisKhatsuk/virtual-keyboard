@@ -210,9 +210,9 @@ body {
 }
 
 .keyboard {
-  width: 80%;
-  max-width: 800px;
+  width: 815px;
   margin: 0 auto;
+  padding: 15px 10px;
   background-color: #606165;
   border: 1px solid #505050;
   border-radius: 5px;
@@ -242,10 +242,13 @@ body {
   width: 67.5px;
 }
 .keyboard__key_size-3 {
-  width: 90px;
+  width: 117.9px;
 }
 .keyboard__key_size-4 {
-  width: 360px;
+  width: 107.1px;
+}
+.keyboard__key_size-5 {
+  width: 373.05px;
 }
 
 /*# sourceMappingURL=style.css.map */
