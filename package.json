@@ -1,0 +1,13 @@
+{
+  "name": "virtual-keyboard",
+  "version": "1.0.0",
+  "description": "RS School Virtual Keyboard task. Stage 2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "style": "sass --watch sass/style.scss style.css"
+  },
+  "author": "Denis Khatsuk",
+  "license": "ISC",
+  "dependencies": {}
+}
