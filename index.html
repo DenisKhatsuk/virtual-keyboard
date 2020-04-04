@@ -3,10 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <title>Virtual Keyboard</title>
 </head>
 <body>
+  <header class="header">
+    <h1 class="header__title">RS School Virtual Keyboard</h1>
+  </header>
+  <main class="main">
+    <div class="textarea main__textarea">
+      <textarea name="textarea" id="textarea" cols="50" rows="10"></textarea>
+    </div>
+    <div class="keyboard main__keyboard">
+      <button class="keyboard__key">1</button>
+      <button class="keyboard__key">2</button>
+      <button class="keyboard__key">3</button>
+      <button class="keyboard__key">4</button>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="description">
+      <p class="description__text">Keyboard is created in OS Windows.
+        <br>
+        <br>
+        To switch language use left ctrl + shift.</p>
+    </div>
+  </footer>
+
   <script src="./js/script.js"></script>
 </body>
 </html>

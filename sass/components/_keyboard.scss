@@ -1,0 +1,27 @@
+.keyboard {
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: $color-primary;
+  border: 1px solid $color-border;
+  border-radius: 5px;
+  -webkit-box-shadow: 14px 15px 24px -5px rgba(0,0,0,0.37);
+  -moz-box-shadow: 14px 15px 24px -5px rgba(0,0,0,0.37);
+  box-shadow: 14px 15px 24px -5px rgba(0,0,0,0.37);
+}
+
+.keyboard__key {
+  height: $key-height;
+  width: $key-width;
+  margin: 3px;
+  background-color: $color-secondary;
+  color: $color-light;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+
+  &:active {
+    background-color: $color-active;  
+  }
+}
