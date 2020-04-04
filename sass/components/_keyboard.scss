@@ -24,4 +24,20 @@
   &:active {
     background-color: $color-active;  
   }
+
+  &:hover {
+    background-color: $color-active;  
+  }
+
+  &_size-2 {
+    width: $key-width * 1.5;
+  }
+
+  &_size-3 {
+    width: $key-width * 2;
+  }
+
+  &_size-4 {
+    width: $key-width * 8;
+  }
 }
