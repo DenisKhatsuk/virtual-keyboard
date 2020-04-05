@@ -4,11 +4,11 @@ const Keyboard = {
 
   elements: {
     main: null,
-    keysLayout: [ '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '+', 'Backspace', '\n',
-    'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del', '\n',
-    'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', 'Enter', '\n',
-    'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '▲', 'Shift', '\n',
-    'Ctrl', 'Win', 'Alt', 'Space', 'Alt', '◄', '▼', '►', 'Ctrl'],
+    keysLayout: [ ['`', 'Backquote', 'ё'], ['1', 'Digit1'], ['2', 'Digit2'], ['3', 'Digit3'], ['4', 'Digit4'], ['5', 'Digit5'], ['6', 'Digit6'], ['7', 'Digit7'], ['8', 'Digit8'], ['9', 'Digit9'], ['0', 'Digit0'], ['-', 'Minus'], ['=', 'Equal'], ['Backspace', 'Backspace'], ['\n'],
+    ['Tab', 'Tab'], ['q', 'KeyQ'], ['w', 'KeyW'], ['e', 'KeyE'], ['r', 'KeyR'], ['t', 'KeyT'], ['y', 'KeyY'], ['u', 'KeyU'], ['i', 'KeyI'], ['o', 'KeyO'], ['p', 'KeyP'], ['[', 'BracketLeft'], [']', 'BracketRight'], ['\\', 'Backslash'], ['Del', 'Delete'], ['\n'],
+    ['CapsLock', 'CapsLock'], ['a', 'KeyA'], ['s', 'KeyS'], ['d', 'KeyD'], ['f', 'KeyF'], ['g', 'KeyG'], ['h', 'KeyH'], ['j', 'KeyJ'], ['k', 'KeyK'], ['l', 'KeyL'], [';', 'Semicolon'], ['\'', 'Quote'], ['Enter', 'Enter'], ['\n'],
+    ['Shift', 'ShiftLeft'], ['z', 'KeyZ'], ['x', 'KeyX'], ['c', 'KeyC'], ['v', 'KeyV'], ['b', 'KeyB'], ['n', 'KeyN'], ['m', 'KeyM'], [',', 'Comma'], ['.', 'Period'], ['/', 'Slash'], ['▲', 'ArrowUp'], ['Shift', 'ShiftRight'], ['\n'],
+    ['Ctrl', 'ControlLeft'], ['Win', 'MetaLeft'], ['Alt', 'AltLeft'], ['Space', 'Space'], ['Alt', 'AltRight'], ['◄', 'ArrowLeft'], ['▼', 'ArrowDown'], ['►', 'ArrowRight'], ['Ctrl', 'ControlRight']],
     keys: null,
   },
   
@@ -30,15 +30,15 @@ const Keyboard = {
     this.elements.keysLayout.forEach(function(el) {
       let key;
       let keyContent;
-      switch(el) {
+      switch(el[0]) {
         case '\n':
           key = document.createElement('br');
           fragment.appendChild(key);
           break;
         case 'Backspace':
           key = document.createElement('button');
-          keyContent = document.createTextNode(el);
-          key.classList.add('keyboard__key', 'keyboard__key_size-3');
+          keyContent = document.createTextNode(el[0]);
+          key.classList.add('keyboard__key', 'keyboard__key_size-3', el[1]);
           key.appendChild(keyContent);
           fragment.appendChild(key);
           break;
@@ -46,29 +46,29 @@ const Keyboard = {
         case 'Shift':
         case 'Enter':  
           key = document.createElement('button');
-          keyContent = document.createTextNode(el);
-          key.classList.add('keyboard__key', 'keyboard__key_size-4');
+          keyContent = document.createTextNode(el[0]);
+          key.classList.add('keyboard__key', 'keyboard__key_size-4', el[1]);
           key.appendChild(keyContent);
           fragment.appendChild(key);
           break;
         case 'Space':  
           key = document.createElement('button');
-          keyContent = document.createTextNode(el);
-          key.classList.add('keyboard__key', 'keyboard__key_size-5');
+          keyContent = document.createTextNode(el[0]);
+          key.classList.add('keyboard__key', 'keyboard__key_size-5', el[1]);
           key.appendChild(keyContent);
           fragment.appendChild(key);
           break;
         case 'Tab':
           key = document.createElement('button');
-          keyContent = document.createTextNode(el);
-          key.classList.add('keyboard__key', 'keyboard__key_size-2');
+          keyContent = document.createTextNode(el[0]);
+          key.classList.add('keyboard__key', 'keyboard__key_size-2', el[1]);
           key.appendChild(keyContent);
           fragment.appendChild(key);
           break;
         default:
           key = document.createElement('button');
-          keyContent = document.createTextNode(el);
-          key.classList.add('keyboard__key');
+          keyContent = document.createTextNode(el[0]);
+          key.classList.add('keyboard__key', el[1]);
           key.appendChild(keyContent);
           fragment.appendChild(key);
           break;
@@ -104,9 +104,9 @@ const Keyboard = {
             e.target.classList.toggle('keyboard__key_active');
             _this.properties.capsLock = !_this.properties.capsLock;
             _this.elements.keys.forEach(function(el) {
-            if (el.textContent.match(/^[a-zА-Я]$/i)) {
-              el.textContent = _this.properties.capsLock ? el.textContent.toUpperCase() : el.textContent.toLowerCase();
-            }
+              if (el.textContent.match(/^[a-zА-Я]$/i)) {
+                el.textContent = _this.properties.capsLock ? el.textContent.toUpperCase() : el.textContent.toLowerCase();
+              }
             });
             break;
           case 'Enter':
@@ -121,14 +121,42 @@ const Keyboard = {
             _this.output.value = _this.output.value.slice(0, _this.output.selectionStart) + ' ' + _this.output.value.slice(_this.output.selectionStart);
             break;  
           default:
-            _this.output.value += e.target.textContent;
+            _this.output.value = _this.output.value.slice(0, _this.output.selectionStart) + e.target.textContent + _this.output.value.slice(_this.output.selectionStart);
             break;  
         }
         _this.output.focus();
         
       }
     })
+
+    // button press handler
+    this.keyPressHandler();
+
   },
+
+  keyPressHandler() {
+    let _this = this;
+    let capsLockButton = document.querySelector('.CapsLock'); 
+    document.addEventListener('keydown', function(event) {
+      _this.elements.keys.forEach(function(el) {
+        if (el.classList.contains(event.code) && !el.classList.contains('keyboard__key_active') && event.code !== 'CapsLock') el.classList.add('keyboard__key_active');
+      });
+      if (event.code === 'CapsLock') {
+        capsLockButton.classList.toggle('keyboard__key_active');
+        _this.properties.capsLock = !_this.properties.capsLock;
+        _this.elements.keys.forEach(function(el) {
+          if (el.textContent.match(/^[a-zА-Я]$/i)) {
+            el.textContent = _this.properties.capsLock ? el.textContent.toUpperCase() : el.textContent.toLowerCase();
+          }
+        });
+      }
+    });
+    document.addEventListener('keyup', function(event) {
+      _this.elements.keys.forEach(function(el) {
+        if (el.classList.contains(event.code) && event.code !== 'CapsLock') el.classList.remove('keyboard__key_active');
+      });
+    });
+  }
 
 }
 
