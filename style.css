@@ -209,6 +209,10 @@ body {
   max-width: 830px;
 }
 
+textarea[id=textarea] {
+  outline: none;
+}
+
 .keyboard {
   width: 815px;
   margin: 0 auto;
@@ -231,6 +235,9 @@ body {
   border-radius: 4px;
   outline: none;
   cursor: pointer;
+}
+.keyboard__key_active {
+  background-color: rgba(255, 255, 255, 0.4);
 }
 .keyboard__key:active {
   background-color: rgba(255, 255, 255, 0.4);

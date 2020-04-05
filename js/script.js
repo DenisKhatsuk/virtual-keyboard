@@ -4,15 +4,15 @@ const Keyboard = {
 
   elements: {
     main: null,
-    keys: [ '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '+', 'Backspace', '\n',
+    keysLayout: [ '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '+', 'Backspace', '\n',
     'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del', '\n',
     'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', 'Enter', '\n',
     'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '▲', 'Shift', '\n',
     'Ctrl', 'Win', 'Alt', 'Space', 'Alt', '◄', '▼', '►', 'Ctrl'],
+    keys: null,
   },
   
   properties: {
-    value: '',
     capsLock: false,
     language: 'RU',
   },
@@ -27,7 +27,7 @@ const Keyboard = {
 
     // add keys to keyboard
     let fragment = new DocumentFragment();
-    this.elements.keys.forEach(function(el) {
+    this.elements.keysLayout.forEach(function(el) {
       let key;
       let keyContent;
       switch(el) {
@@ -75,12 +75,57 @@ const Keyboard = {
       }
     });
     this.elements.main.appendChild(fragment);
+    this.elements.keys = document.querySelectorAll('.keyboard.main__keyboard > .keyboard__key');
 
-    // track buttons click
+    // buttons click handler
     this.elements.main.addEventListener('click', function(e) {
       if (e.target.classList.contains('keyboard__key')) {
-        _this.properties.value += e.target.textContent;
-        _this.output.value = _this.properties.value;
+        switch(e.target.textContent) {
+          case 'Backspace':
+            if (_this.output.selectionStart === _this.output.selectionEnd) {
+              _this.output.value = _this.output.value.slice(0, _this.output.selectionStart - 1) + _this.output.value.slice(_this.output.selectionStart);
+              
+            } else {
+              _this.output.value = _this.output.value.slice(0, _this.output.selectionStart) + _this.output.value.slice(_this.output.selectionEnd);
+            } 
+            break;
+          case 'Tab':
+            _this.output.value = _this.output.value.slice(0, _this.output.selectionStart) + '    ' + _this.output.value.slice(_this.output.selectionStart);
+            break;
+          case 'Del':
+            if (_this.output.selectionStart === _this.output.selectionEnd) {
+              _this.output.value = _this.output.value.slice(0, _this.output.selectionStart) + _this.output.value.slice(_this.output.selectionStart + 1);
+              
+            } else {
+              _this.output.value = _this.output.value.slice(0, _this.output.selectionStart) + _this.output.value.slice(_this.output.selectionEnd);
+            } 
+            break;
+          case 'CapsLock':
+            e.target.classList.toggle('keyboard__key_active');
+            _this.properties.capsLock = !_this.properties.capsLock;
+            _this.elements.keys.forEach(function(el) {
+            if (el.textContent.match(/^[a-zА-Я]$/i)) {
+              el.textContent = _this.properties.capsLock ? el.textContent.toUpperCase() : el.textContent.toLowerCase();
+            }
+            });
+            break;
+          case 'Enter':
+            _this.output.value = _this.output.value.slice(0, _this.output.selectionStart) + '\n' + _this.output.value.slice(_this.output.selectionStart);
+            break;
+          case 'Shift':
+          case 'Ctrl':
+          case 'Win':
+          case 'Alt':
+            break;
+          case 'Space':
+            _this.output.value = _this.output.value.slice(0, _this.output.selectionStart) + ' ' + _this.output.value.slice(_this.output.selectionStart);
+            break;  
+          default:
+            _this.output.value += e.target.textContent;
+            break;  
+        }
+        _this.output.focus();
+        
       }
     })
   },

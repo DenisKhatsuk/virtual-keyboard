@@ -21,6 +21,10 @@
   outline: none;
   cursor: pointer;
 
+  &_active {
+    background-color: $color-active;  
+  }
+
   &:active {
     background-color: $color-active;  
   }
