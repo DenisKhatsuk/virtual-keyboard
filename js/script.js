@@ -1,5 +1,6 @@
 const Keyboard = {
   parent: document.querySelector('.main'),
+  output: document.querySelector('textarea[name="textarea"]'),
 
   elements: {
     main: null,
@@ -17,8 +18,9 @@ const Keyboard = {
   },
 
   init() {
-    
-    //create keyboard element
+    let _this = this;
+
+    // create keyboard element
     this.elements.main = document.createElement('div');
     this.elements.main.classList.add('keyboard', 'main__keyboard');
     this.parent.appendChild(this.elements.main);
@@ -73,6 +75,14 @@ const Keyboard = {
       }
     });
     this.elements.main.appendChild(fragment);
+
+    // track buttons click
+    this.elements.main.addEventListener('click', function(e) {
+      if (e.target.classList.contains('keyboard__key')) {
+        _this.properties.value += e.target.textContent;
+        _this.output.value = _this.properties.value;
+      }
+    })
   },
 
 }
