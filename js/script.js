@@ -160,7 +160,6 @@ const Keyboard = {
 
     // buttons click handler
     this.elements.main.addEventListener('click', function(e) {
-      let selectionEnd = _this.output.selectionEnd;
       if (e.target.classList.contains('keyboard__key')) {
         switch(e.target.getAttribute('data-eng')) {
           case 'Backspace':
@@ -220,7 +219,7 @@ const Keyboard = {
     document.addEventListener('keydown', function(event) {
       //highlight pressed button
       _this.elements.keys.forEach(function(el) {
-        if (el.classList.contains(event.code) && !el.classList.contains('keyboard__key_active') && event.code !== 'CapsLock') el.classList.add('keyboard__key_active');
+        if (el.getAttribute('data-code') === event.code && !el.classList.contains('keyboard__key_active') && event.code !== 'CapsLock') el.classList.add('keyboard__key_active');
       });
       //CapsLock handler
       if (event.code === 'CapsLock') {
@@ -247,7 +246,7 @@ const Keyboard = {
     });
     document.addEventListener('keyup', function(event) {
       _this.elements.keys.forEach(function(el) {
-        if (el.classList.contains(event.code) && event.code !== 'CapsLock') el.classList.remove('keyboard__key_active');
+        if (el.getAttribute('data-code') === event.code && event.code !== 'CapsLock') el.classList.remove('keyboard__key_active');
       });
       //shift handler
       if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
