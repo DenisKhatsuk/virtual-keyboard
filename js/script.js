@@ -18,61 +18,61 @@ const Keyboard = {
       {keyCode: 'Digit0', eng: '0', engShift: ')'}, 
       {keyCode: 'Minus', eng: '-', engShift: '_'}, 
       {keyCode: 'Equal', eng: '=', engShift: '+'}, 
-      {keyCode: 'Backspace', eng: 'Backspace', engShift: 'Backspace'}, 
+      {keyCode: 'Backspace', eng: 'Backspace', engShift: 'none'}, 
       {eng:'\n'},
-      {keyCode: 'Tab', eng: 'Tab', engShift: 'Tab'}, 
-      {keyCode: 'KeyQ', eng: 'q', engShift: 'q'}, 
-      {keyCode: 'KeyW', eng: 'w', engShift: 'w'}, 
-      {keyCode: 'KeyE', eng: 'e', engShift: 'e'}, 
-      {keyCode: 'KeyR', eng: 'r', engShift: 'r'}, 
-      {keyCode: 'KeyT', eng: 't', engShift: 't'}, 
-      {keyCode: 'KeyY', eng: 'y', engShift: 'y'}, 
-      {keyCode: 'KeyU', eng: 'u', engShift: 'u'}, 
-      {keyCode: 'KeyI', eng: 'i', engShift: 'i'}, 
-      {keyCode: 'KeyO', eng: 'o', engShift: 'o'}, 
-      {keyCode: 'KeyP', eng: 'p', engShift: 'p'}, 
+      {keyCode: 'Tab', eng: 'Tab', engShift: 'none'}, 
+      {keyCode: 'KeyQ', eng: 'q', engShift: 'Q'}, 
+      {keyCode: 'KeyW', eng: 'w', engShift: 'W'}, 
+      {keyCode: 'KeyE', eng: 'e', engShift: 'E'}, 
+      {keyCode: 'KeyR', eng: 'r', engShift: 'R'}, 
+      {keyCode: 'KeyT', eng: 't', engShift: 'T'}, 
+      {keyCode: 'KeyY', eng: 'y', engShift: 'Y'}, 
+      {keyCode: 'KeyU', eng: 'u', engShift: 'U'}, 
+      {keyCode: 'KeyI', eng: 'i', engShift: 'I'}, 
+      {keyCode: 'KeyO', eng: 'o', engShift: 'O'}, 
+      {keyCode: 'KeyP', eng: 'p', engShift: 'P'}, 
       {keyCode: 'BracketLeft', eng: '{', engShift: '{'}, 
       {keyCode: 'BracketRight', eng: ']', engShift: '}'}, 
       {keyCode: 'Backslash', eng: '\\', engShift: '|'}, 
-      {keyCode: 'Delete', eng: 'Del', engShift: 'Del'}, 
+      {keyCode: 'Delete', eng: 'Del', engShift: 'none'}, 
       {eng: '\n'},
-      {keyCode: 'CapsLock', eng: 'CapsLock'}, 
-      {keyCode: 'KeyA', eng: 'a', engShift: 'a'}, 
-      {keyCode: 'KeyS', eng: 's', engShift: 's'}, 
-      {keyCode: 'KeyD', eng: 'd', engShift: 'd'}, 
-      {keyCode: 'KeyF', eng: 'f', engShift: 'f'}, 
-      {keyCode: 'KeyG', eng: 'g', engShift: 'g'}, 
-      {keyCode: 'KeyH', eng: 'h', engShift: 'h'}, 
-      {keyCode: 'KeyJ', eng: 'j', engShift: 'j'}, 
-      {keyCode: 'KeyK', eng: 'k', engShift: 'k'}, 
-      {keyCode: 'KeyL', eng: 'l', engShift: 'l'}, 
+      {keyCode: 'CapsLock', eng: 'CapsLock', engShift: 'none'}, 
+      {keyCode: 'KeyA', eng: 'a', engShift: 'A'}, 
+      {keyCode: 'KeyS', eng: 's', engShift: 'S'}, 
+      {keyCode: 'KeyD', eng: 'd', engShift: 'D'}, 
+      {keyCode: 'KeyF', eng: 'f', engShift: 'F'}, 
+      {keyCode: 'KeyG', eng: 'g', engShift: 'G'}, 
+      {keyCode: 'KeyH', eng: 'h', engShift: 'H'}, 
+      {keyCode: 'KeyJ', eng: 'j', engShift: 'J'}, 
+      {keyCode: 'KeyK', eng: 'k', engShift: 'K'}, 
+      {keyCode: 'KeyL', eng: 'l', engShift: 'L'}, 
       {keyCode: 'Semicolon', eng: ';', engShift: ':'}, 
       {keyCode: 'Quote', eng: '\'', engShift: '"'}, 
-      {keyCode: 'Enter', eng: 'Enter', engShift: 'Enter'}, 
+      {keyCode: 'Enter', eng: 'Enter', engShift: 'none'}, 
       {eng: '\n'},
-      {keyCode: 'ShiftLeft', eng: 'Shift', engShift: 'Shift'}, 
-      {keyCode: 'KeyZ', eng: 'z', engShift: 'z'}, 
-      {keyCode: 'KeyX', eng: 'x', engShift: 'x'}, 
-      {keyCode: 'KeyC', eng: 'c', engShift: 'c'}, 
-      {keyCode: 'KeyV', eng: 'v', engShift: 'v'}, 
-      {keyCode: 'KeyB', eng: 'b', engShift: 'b'}, 
-      {keyCode: 'KeyN', eng: 'n', engShift: 'n'}, 
-      {keyCode: 'KeyM', eng: 'm', engShift: 'm'}, 
+      {keyCode: 'ShiftLeft', eng: 'Shift', engShift: 'none'}, 
+      {keyCode: 'KeyZ', eng: 'z', engShift: 'Z'}, 
+      {keyCode: 'KeyX', eng: 'x', engShift: 'X'}, 
+      {keyCode: 'KeyC', eng: 'c', engShift: 'C'}, 
+      {keyCode: 'KeyV', eng: 'v', engShift: 'V'}, 
+      {keyCode: 'KeyB', eng: 'b', engShift: 'B'}, 
+      {keyCode: 'KeyN', eng: 'n', engShift: 'N'}, 
+      {keyCode: 'KeyM', eng: 'm', engShift: 'M'}, 
       {keyCode: 'Comma', eng: ',', engShift: '<'}, 
       {keyCode: 'Period', eng: '.', engShift: '>'}, 
       {keyCode: 'Slash', eng: '/', engShift: '?'}, 
-      {keyCode: 'ArrowUp', eng: '▲', engShift: '▲'}, 
-      {keyCode: 'ShiftRight', eng: 'Shift', engShift: 'Shift'}, 
+      {keyCode: 'ArrowUp', eng: '▲', engShift: 'none'}, 
+      {keyCode: 'ShiftRight', eng: 'Shift', engShift: 'none'}, 
       {eng: '\n'},
-      {keyCode: 'ControlLeft', eng: 'Ctrl', engShift: 'Ctrl'}, 
-      {keyCode: 'MetaLeft', eng: 'Win', engShift: 'Win'}, 
-      {keyCode: 'AltLeft', eng: 'Alt', engShift: 'Alt'}, 
-      {keyCode: 'Space', eng: 'Space', engShift: 'Space'}, 
-      {keyCode: 'AltRight', eng: 'Alt', engShift: 'Alt'}, 
-      {keyCode: 'ArrowLeft', eng: '◄', engShift: '◄'}, 
-      {keyCode: 'ArrowDown', eng: '▼', engShift: '▼'}, 
-      {keyCode: 'ArrowRight', eng: '►', engShift: '►'}, 
-      {keyCode: 'ControlRight', eng: 'Ctrl', engShift: 'Ctrl'}
+      {keyCode: 'ControlLeft', eng: 'Ctrl', engShift: 'none'}, 
+      {keyCode: 'MetaLeft', eng: 'Win', engShift: 'none'}, 
+      {keyCode: 'AltLeft', eng: 'Alt', engShift: 'none'}, 
+      {keyCode: 'Space', eng: 'Space', engShift: 'none'}, 
+      {keyCode: 'AltRight', eng: 'Alt', engShift: 'none'}, 
+      {keyCode: 'ArrowLeft', eng: '◄', engShift: 'none'}, 
+      {keyCode: 'ArrowDown', eng: '▼', engShift: 'none'}, 
+      {keyCode: 'ArrowRight', eng: '►', engShift: 'none'}, 
+      {keyCode: 'ControlRight', eng: 'Ctrl', engShift: 'none'}
     ],
     keys: null,
   },
@@ -238,8 +238,8 @@ const Keyboard = {
           _this.properties.shift = true;
           console.log('Shift active');
           _this.elements.keys.forEach(function(el) {
-            if (el.textContent.match(/^[a-zА-Я]$/i)) {
-              el.textContent = _this.properties.capsLock ? el.textContent.toLowerCase() : el.textContent.toUpperCase();
+            if (el.getAttribute('data-engshift') !== 'none') {
+              el.textContent = _this.properties.capsLock ? el.getAttribute('data-engshift').toLowerCase() : el.getAttribute('data-engshift');
             }
           });
         } 
@@ -254,8 +254,8 @@ const Keyboard = {
         _this.properties.shift = false;
       }
       _this.elements.keys.forEach(function(el) {
-        if (el.textContent.match(/^[a-zА-Я]$/i)) {
-          el.textContent = _this.properties.capsLock ? el.textContent.toUpperCase() : el.textContent.toLowerCase();
+        if (el.getAttribute('data-engshift') !== 'none') {
+          el.textContent = _this.properties.capsLock ? el.getAttribute('data-eng').toUpperCase() : el.getAttribute('data-eng');
         }
 
       });
