@@ -420,6 +420,16 @@ const Keyboard = {
           $this.shiftHandler();
         }
       }
+      // tab
+      if (event.code === 'Tab') {
+        const output = $this.output.value;
+        const selectStart = $this.output.selectionStart;
+        const outputBeforeSelection = output.slice(0, selectStart);
+        const outputAfterSelection = output.slice(selectStart);
+        event.preventDefault();
+        $this.output.value = `${outputBeforeSelection}    ${outputAfterSelection}`;
+        $this.output.setSelectionRange(selectStart + 4, selectStart + 4);
+      }
       // language switch
       if (event.ctrlKey && event.code === 'AltLeft') {
         if (!$this.properties.languageSwitch) $this.properties.languageSwitch = true;
