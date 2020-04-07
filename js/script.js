@@ -469,6 +469,7 @@ const Keyboard = {
 
   setKeysValue() {
     const $this = this;
+    const caps = $this.properties.capsLock;
     let lang;
     if ($this.properties.language === 'ENG') {
       lang = 'data-eng';
@@ -478,7 +479,11 @@ const Keyboard = {
     $this.elements.keys.forEach((element) => {
       const el = element;
       if (el.getAttribute(lang) !== 'none') {
-        el.textContent = el.getAttribute(lang);
+        if (el.textContent.match(/^[a-zА-Яё]$/i)) {
+          el.textContent = caps ? el.getAttribute(lang).toUpperCase() : el.getAttribute(lang);
+        } else {
+          el.textContent = el.getAttribute(lang);
+        }
       }
     });
   },
