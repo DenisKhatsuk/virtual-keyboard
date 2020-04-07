@@ -300,18 +300,23 @@ const Keyboard = {
           case 'Backspace':
             if (noSelection) {
               $this.output.value = output.slice(0, selectStart - 1) + outputAfterSelection;
+              $this.output.setSelectionRange(selectStart - 1, selectStart - 1);
             } else {
               $this.output.value = outputBeforeSelection + output.slice(selectEnd);
+              $this.output.setSelectionRange(selectStart, selectStart);
             }
             break;
           case 'Tab':
             $this.output.value = `${outputBeforeSelection}    ${outputAfterSelection}`;
+            $this.output.setSelectionRange(selectStart + 4, selectStart + 4);
             break;
           case 'Del':
             if (noSelection) {
               $this.output.value = outputBeforeSelection + output.slice(selectStart + 1);
+              $this.output.setSelectionRange(selectStart, selectStart);
             } else {
               $this.output.value = outputBeforeSelection + output.slice(selectEnd);
+              $this.output.setSelectionRange(selectStart, selectStart);
             }
             break;
           case 'CapsLock':
@@ -328,6 +333,7 @@ const Keyboard = {
             break;
           case 'Space':
             $this.output.value = `${outputBeforeSelection} ${outputAfterSelection}`;
+            $this.output.setSelectionRange(selectStart + 1, selectStart + 1);
             break;
           default:
             $this.output.value = outputBeforeSelection + targetContent + outputAfterSelection;
