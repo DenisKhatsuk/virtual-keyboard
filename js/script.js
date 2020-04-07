@@ -286,6 +286,7 @@ const Keyboard = {
   buttonClickHandler() {
     // buttons click handler
     const $this = this;
+    let shiftClick = false;
     this.elements.main.addEventListener('click', (e) => {
       const targetContent = e.target.textContent;
       const selectStart = $this.output.selectionStart;
@@ -335,15 +336,19 @@ const Keyboard = {
       }
     });
     // shift click handler
-    this.elements.main.addEventListener('mousedown', () => {
-      if (!$this.properties.shift) {
+    this.elements.main.addEventListener('mousedown', (e) => {
+      if (!$this.properties.shift && e.target.getAttribute('data-eng') === 'Shift') {
         $this.properties.shift = true;
+        shiftClick = true;
         $this.shiftHandler();
       }
     });
     this.elements.main.addEventListener('mouseup', () => {
-      $this.properties.shift = false;
-      $this.shiftHandler();
+      if (shiftClick) {
+        $this.properties.shift = false;
+        shiftClick = false;
+        $this.shiftHandler();
+      }
     });
   },
 
