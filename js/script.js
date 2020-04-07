@@ -334,6 +334,17 @@ const Keyboard = {
         }
       }
     });
+    // shift click handler
+    this.elements.main.addEventListener('mousedown', () => {
+      if (!$this.properties.shift) {
+        $this.properties.shift = true;
+        $this.shiftHandler();
+      }
+    });
+    this.elements.main.addEventListener('mouseup', () => {
+      $this.properties.shift = false;
+      $this.shiftHandler();
+    });
   },
 
   capsLockHandler() {
