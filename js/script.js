@@ -327,10 +327,10 @@ const Keyboard = {
     const $this = this;
     this.properties.capsLock = !this.properties.capsLock;
     const caps = $this.properties.capsLock;
-    this.elements.keys.forEach((el) => {
-      let elem = el.textContent;
-      if (elem.match(/^[a-zА-ЯЁё]$/i)) {
-        elem = caps ? elem.toUpperCase() : elem.toLowerCase();
+    this.elements.keys.forEach((elem) => {
+      const el = elem;
+      if (el.textContent.match(/^[a-zА-Яё]$/i)) {
+        el.textContent = caps ? el.textContent.toUpperCase() : el.textContent.toLowerCase();
       }
     });
   },
