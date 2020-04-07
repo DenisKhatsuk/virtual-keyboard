@@ -1,5 +1,6 @@
 const Keyboard = {
-  output: document.querySelector('textarea[name="textarea"]'),
+  parent: null,
+  output: null,
 
   elements: {
     main: null,
@@ -213,12 +214,13 @@ const Keyboard = {
 
   init() {
     const $this = this;
-    const parent = document.querySelector('.main');
-
+    this.parent = document.querySelector('.main');
+    this.output = document.querySelector('textarea[name="textarea"]');
+    this.keepOutputFocus();
     // create keyboard element
     this.elements.main = document.createElement('div');
     this.elements.main.classList.add('keyboard', 'main__keyboard');
-    parent.appendChild(this.elements.main);
+    this.parent.appendChild(this.elements.main);
 
     // add keys to keyboard
     const fragment = new DocumentFragment();
@@ -253,6 +255,18 @@ const Keyboard = {
     // actions handlers
     this.buttonClickHandler();
     this.keyPressHandler();
+  },
+
+  keepOutputFocus() {
+    const $this = this;
+    $this.output.focus();
+    const body = document.querySelector('.body');
+    body.addEventListener('keydown', () => {
+      $this.output.focus();
+    });
+    body.addEventListener('click', () => {
+      $this.output.focus();
+    });
   },
 
   createKey(el, fragment, additionalKeyClass) {
@@ -318,7 +332,6 @@ const Keyboard = {
             $this.output.value = outputBeforeSelection + targetContent + outputAfterSelection;
             break;
         }
-        $this.output.focus();
       }
     });
   },
