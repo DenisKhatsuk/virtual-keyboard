@@ -1,5 +1,4 @@
 const Keyboard = {
-  parent: document.querySelector('.main'),
   output: document.querySelector('textarea[name="textarea"]'),
 
   elements: {
@@ -214,11 +213,12 @@ const Keyboard = {
 
   init() {
     const $this = this;
+    const parent = document.querySelector('.main');
 
     // create keyboard element
     this.elements.main = document.createElement('div');
     this.elements.main.classList.add('keyboard', 'main__keyboard');
-    this.parent.appendChild(this.elements.main);
+    parent.appendChild(this.elements.main);
 
     // add keys to keyboard
     const fragment = new DocumentFragment();
@@ -428,10 +428,48 @@ const Keyboard = {
       }
     });
   },
+};
 
+const TextArea = {
+  parent: document.querySelector('.body'),
+
+  init() {
+    // create textarea element
+    const main = document.createElement('div');
+    const textArea = document.createElement('div');
+    main.classList.add('main');
+    textArea.classList.add('textarea', 'main__textarea');
+    textArea.innerHTML = '<textarea name="textarea" id="textarea" cols="100" rows="10"></textarea>';
+    main.appendChild(textArea);
+    this.parent.prepend(main);
+  },
+};
+
+const AdditionalContent = {
+  parent: document.querySelector('.body'),
+
+  init() {
+    // add additional header content
+    const header = document.createElement('header');
+    const heading = document.createElement('h1');
+    header.classList.add('header');
+    heading.classList.add('header__title');
+    heading.textContent = 'RS School Virtual Keyboard';
+    header.appendChild(heading);
+    this.parent.prepend(header);
+
+    // add additional footer content
+    const footer = document.createElement('footer');
+    const script = document.querySelector('script');
+    footer.classList.add('footer');
+    footer.innerHTML = '<div class="description"><p class="description__text">Keyboard is created in OS Windows.<br><br>To switch language use left ctrl + alt.</p></div>';
+    this.parent.insertBefore(footer, script);
+  },
 };
 
 window.addEventListener('DOMContentLoaded', () => {
+  TextArea.init();
   Keyboard.properties.language = localStorage.getItem('lang');
   Keyboard.init();
+  AdditionalContent.init();
 });
