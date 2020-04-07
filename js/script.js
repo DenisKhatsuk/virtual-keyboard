@@ -257,7 +257,8 @@ const Keyboard = {
 
   createKey(el, fragment, additionalKeyClass) {
     const key = document.createElement('button');
-    const keyContent = document.createTextNode(el.eng);
+    const content = this.properties.language === 'ENG' ? el.eng : el.ru;
+    const keyContent = document.createTextNode(content);
     key.classList.add('keyboard__key', additionalKeyClass);
     key.setAttribute('data-code', el.keyCode);
     key.setAttribute('data-eng', el.eng);
@@ -404,6 +405,7 @@ const Keyboard = {
       if (event.altKey) {
         if ($this.properties.languageSwitch) {
           $this.properties.language = $this.properties.language === 'ENG' ? 'RU' : 'ENG';
+          localStorage.setItem('lang', $this.properties.language);
           $this.properties.languageSwitch = false;
         }
         $this.setKeysValue();
@@ -430,5 +432,6 @@ const Keyboard = {
 };
 
 window.addEventListener('DOMContentLoaded', () => {
+  Keyboard.properties.language = localStorage.getItem('lang');
   Keyboard.init();
 });
