@@ -418,6 +418,15 @@ const Keyboard = {
       if (event.ctrlKey && event.code === 'AltLeft') {
         if (!$this.properties.languageSwitch) $this.properties.languageSwitch = true;
       }
+      // current language detect
+      if (event.key.match(/^[А-Яё"№;%:?*.]$/i) && $this.properties.language === 'ENG') {
+        $this.properties.language = 'RU';
+        $this.setKeysValue();
+      }
+      if (event.key.match(/^[a-z`~@#$&/]$/i) && $this.properties.language === 'RU') {
+        $this.properties.language = 'ENG';
+        $this.setKeysValue();
+      }
     });
 
     // key up
