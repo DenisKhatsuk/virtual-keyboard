@@ -470,12 +470,7 @@ const Keyboard = {
   setKeysValue() {
     const $this = this;
     const caps = $this.properties.capsLock;
-    let lang;
-    if ($this.properties.language === 'ENG') {
-      lang = 'data-eng';
-    } else {
-      lang = 'data-ru';
-    }
+    const lang = $this.properties.language === 'ENG' ? 'data-eng' : 'data-ru';
     $this.elements.keys.forEach((element) => {
       const el = element;
       if (el.getAttribute(lang) !== 'none') {
