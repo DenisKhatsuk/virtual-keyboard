@@ -492,8 +492,8 @@ const TextArea = {
     const main = document.createElement('div');
     const textArea = document.createElement('div');
     main.classList.add('main');
-    textArea.classList.add('textarea', 'main__textarea');
-    textArea.innerHTML = '<textarea name="textarea" id="textarea" cols="100" rows="10"></textarea>';
+    textArea.classList.add('textarea-wrapper', 'main__textarea');
+    textArea.innerHTML = '<textarea name="textarea" id="textarea" class="textarea" cols="100" rows="10"></textarea>';
     main.appendChild(textArea);
     this.parent.prepend(main);
   },
