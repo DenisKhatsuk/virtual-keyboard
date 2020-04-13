@@ -1,13 +1,13 @@
 @charset "utf-8";
 
-@import "../sass/abstract/constants";
+@import "./abstract/constants";
 
-@import "../sass/base/normalize";
-@import "../sass/base/typography";
+@import "./base/normalize";
+@import "./base/typography";
 
-@import "../sass/layouts/header";
-@import "../sass/layouts/main";
-@import "../sass/layouts/footer";
+@import "./layouts/header";
+@import "./layouts/main";
+@import "./layouts/footer";
 
-@import "../sass/components/textarea";
-@import "../sass/components/keyboard";
+@import "./components/textarea";
+@import "./components/keyboard";
