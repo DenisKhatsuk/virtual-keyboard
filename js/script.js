@@ -1,8 +1,8 @@
-const Keyboard = {
-  parent: null,
-  output: null,
+class Keyboard {
+  parent = null;
+  output = null;
 
-  elements: {
+  elements = {
     main: null,
     keysLayout: [
       {
@@ -203,14 +203,14 @@ const Keyboard = {
       },
     ],
     keys: null,
-  },
+  };
 
-  properties: {
+  properties = {
     capsLock: false,
     shift: false,
     language: 'ENG',
     languageSwitcher: false,
-  },
+  };
 
   init() {
     const $this = this;
@@ -255,7 +255,7 @@ const Keyboard = {
     // actions handlers
     this.buttonClickHandler();
     this.keyPressHandler();
-  },
+  }
 
   keepOutputFocus() {
     const $this = this;
@@ -267,7 +267,7 @@ const Keyboard = {
     body.addEventListener('click', () => {
       $this.output.focus();
     });
-  },
+  }
 
   createKey(el, fragment, additionalKeyClass) {
     const key = document.createElement('button');
@@ -281,7 +281,7 @@ const Keyboard = {
     key.setAttribute('data-ruShift', el.ruShift);
     key.appendChild(keyContent);
     fragment.appendChild(key);
-  },
+  }
 
   buttonClickHandler() {
     // buttons click handler
@@ -356,7 +356,7 @@ const Keyboard = {
         $this.shiftHandler();
       }
     });
-  },
+  }
 
   capsLockHandler() {
     const $this = this;
@@ -368,7 +368,7 @@ const Keyboard = {
         el.textContent = caps ? el.textContent.toUpperCase() : el.textContent.toLowerCase();
       }
     });
-  },
+  }
 
   shiftHandler() {
     const $this = this;
@@ -396,7 +396,7 @@ const Keyboard = {
         el.textContent = el.getAttribute(lang);
       }
     });
-  },
+  }
 
   keyPressHandler() {
     const $this = this;
@@ -465,7 +465,7 @@ const Keyboard = {
         $this.setKeysValue();
       }
     });
-  },
+  }
 
   setKeysValue() {
     const $this = this;
@@ -481,11 +481,11 @@ const Keyboard = {
         }
       }
     });
-  },
-};
+  }
+}
 
-const TextArea = {
-  parent: document.querySelector('.body'),
+class TextArea {
+  parent = document.querySelector('.body');
 
   init() {
     // create textarea element
@@ -496,11 +496,11 @@ const TextArea = {
     textArea.innerHTML = '<textarea name="textarea" id="textarea" class="textarea" cols="100" rows="10"></textarea>';
     main.appendChild(textArea);
     this.parent.prepend(main);
-  },
-};
+  }
+}
 
-const AdditionalContent = {
-  parent: document.querySelector('.body'),
+class AdditionalContent {
+  parent = document.querySelector('.body');
 
   init() {
     // add additional header content
@@ -518,12 +518,15 @@ const AdditionalContent = {
     footer.classList.add('footer');
     footer.innerHTML = '<div class="description"><p class="description__text">Keyboard is created in OS Windows.<br><br>To switch language use left ctrl + alt.</p></div>';
     this.parent.insertBefore(footer, script);
-  },
-};
+  }
+}
 
 window.addEventListener('DOMContentLoaded', () => {
-  TextArea.init();
-  Keyboard.properties.language = localStorage.getItem('lang');
-  Keyboard.init();
-  AdditionalContent.init();
+  let output = new TextArea();
+  let content = new AdditionalContent();
+  let keyboard = new Keyboard();
+  output.init();
+  keyboard.properties.language = localStorage.getItem('lang');
+  keyboard.init();
+  content.init();
 });
