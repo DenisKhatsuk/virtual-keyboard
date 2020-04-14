@@ -45,11 +45,11 @@ class Keyboard {
         keyCode: 'Equal', eng: '=', engShift: '+', ru: '=', ruShift: '+',
       },
       {
-        keyCode: 'Backspace', eng: 'Backspace', engShift: 'none', ru: 'Backspace', ruShift: 'none',
+        keyCode: 'Backspace', eng: 'Backspace', engShift: 'none', ru: 'Backspace', ruShift: 'none', size: 'keyboard__key_size-3',
       },
       { eng: '\n' },
       {
-        keyCode: 'Tab', eng: 'Tab', engShift: 'none', ru: 'Tab', ruShift: 'none',
+        keyCode: 'Tab', eng: 'Tab', engShift: 'none', ru: 'Tab', ruShift: 'none', size: 'keyboard__key_size-2',
       },
       {
         keyCode: 'KeyQ', eng: 'q', engShift: 'Q', ru: 'й', ruShift: 'Й',
@@ -95,7 +95,7 @@ class Keyboard {
       },
       { eng: '\n' },
       {
-        keyCode: 'CapsLock', eng: 'CapsLock', engShift: 'none', ru: 'CapsLock', ruShift: 'none',
+        keyCode: 'CapsLock', eng: 'CapsLock', engShift: 'none', ru: 'CapsLock', ruShift: 'none', size: 'keyboard__key_size-4',
       },
       {
         keyCode: 'KeyA', eng: 'a', engShift: 'A', ru: 'ф', ruShift: 'Ф',
@@ -131,11 +131,11 @@ class Keyboard {
         keyCode: 'Quote', eng: '\'', engShift: '"', ru: 'э', ruShift: 'Э',
       },
       {
-        keyCode: 'Enter', eng: 'Enter', engShift: 'none', ru: 'Enter', ruShift: 'none',
+        keyCode: 'Enter', eng: 'Enter', engShift: 'none', ru: 'Enter', ruShift: 'none', size: 'keyboard__key_size-4',
       },
       { eng: '\n' },
       {
-        keyCode: 'ShiftLeft', eng: 'Shift', engShift: 'none', ru: 'Shift', ruShift: 'none',
+        keyCode: 'ShiftLeft', eng: 'Shift', engShift: 'none', ru: 'Shift', ruShift: 'none', size: 'keyboard__key_size-4',
       },
       {
         keyCode: 'KeyZ', eng: 'z', engShift: 'Z', ru: 'я', ruShift: 'Я',
@@ -171,7 +171,7 @@ class Keyboard {
         keyCode: 'ArrowUp', eng: '▲', engShift: 'none', ru: '▲', ruShift: 'none',
       },
       {
-        keyCode: 'ShiftRight', eng: 'Shift', engShift: 'none', ru: 'Shift', ruShift: 'none',
+        keyCode: 'ShiftRight', eng: 'Shift', engShift: 'none', ru: 'Shift', ruShift: 'none', size: 'keyboard__key_size-4',
       },
       { eng: '\n' },
       {
@@ -184,7 +184,7 @@ class Keyboard {
         keyCode: 'AltLeft', eng: 'Alt', engShift: 'none', ru: 'Alt', ruShift: 'none',
       },
       {
-        keyCode: 'Space', eng: 'Space', engShift: 'none', ru: 'Space', ruShift: 'none',
+        keyCode: 'Space', eng: 'Space', engShift: 'none', ru: 'Space', ruShift: 'none', size: 'keyboard__key_size-5',
       },
       {
         keyCode: 'AltRight', eng: 'Alt', engShift: 'none', ru: 'Alt', ruShift: 'none',
@@ -226,27 +226,10 @@ class Keyboard {
     const fragment = new DocumentFragment();
     const lineBrake = document.createElement('br');
     this.elements.keysLayout.forEach((el) => {
-      switch (el.eng) {
-        case '\n':
-          fragment.appendChild(lineBrake);
-          break;
-        case 'Backspace':
-          $this.createKey(el, fragment, 'keyboard__key_size-3');
-          break;
-        case 'CapsLock':
-        case 'Shift':
-        case 'Enter':
-          $this.createKey(el, fragment, 'keyboard__key_size-4');
-          break;
-        case 'Space':
-          $this.createKey(el, fragment, 'keyboard__key_size-5');
-          break;
-        case 'Tab':
-          $this.createKey(el, fragment, 'keyboard__key_size-2');
-          break;
-        default:
-          $this.createKey(el, fragment);
-          break;
+      if (el.eng === '\n') {
+        fragment.appendChild(lineBrake);
+      } else {
+        $this.createKey(el, fragment);
       }
     });
     this.elements.main.appendChild(fragment);
@@ -270,11 +253,12 @@ class Keyboard {
     });
   }
 
-  createKey(el, fragment, additionalKeyClass) {
+  createKey(el, fragment) {
     const key = document.createElement('button');
     const content = this.properties.language === 'ENG' ? el.eng : el.ru;
     const keyContent = document.createTextNode(content);
-    key.classList.add('keyboard__key', additionalKeyClass);
+    key.classList.add('keyboard__key');
+    if (el.size !== undefined) key.classList.add(el.size);
     key.setAttribute('data-code', el.keyCode);
     key.setAttribute('data-eng', el.eng);
     key.setAttribute('data-engShift', el.engShift);
