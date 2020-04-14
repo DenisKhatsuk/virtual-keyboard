@@ -220,7 +220,7 @@ class Keyboard {
     // create keyboard element
     this.elements.main = document.createElement('div');
     this.elements.main.classList.add('keyboard', 'main__keyboard');
-    this.parent.appendChild(this.elements.main);
+    
 
     // add keys to keyboard
     const fragment = new DocumentFragment();
@@ -250,6 +250,7 @@ class Keyboard {
       }
     });
     this.elements.main.appendChild(fragment);
+    this.parent.appendChild(this.elements.main);
     this.elements.keys = document.querySelectorAll('.keyboard.main__keyboard > .keyboard__key');
 
     // actions handlers
