@@ -279,7 +279,7 @@ class Keyboard {
       const output = $this.output.value;
       const noSelection = selectStart === selectEnd;
       const outputBeforeSelection = output.slice(0, selectStart);
-      const outputAfterSelection = output.slice(selectStart);
+      const outputAfterSelection = output.slice(selectEnd);
       if (e.target.classList.contains('keyboard__key')) {
         switch (e.target.getAttribute('data-eng')) {
           case 'Backspace':
