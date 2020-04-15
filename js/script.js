@@ -345,8 +345,7 @@ class Keyboard {
     const $this = this;
     this.properties.capsLock = !this.properties.capsLock;
     const caps = $this.properties.capsLock;
-    this.elements.keys.forEach((elem) => {
-      const el = elem;
+    this.elements.keys.forEach((el) => {
       if (el.textContent.match(/^[a-zА-Яё]$/i)) {
         el.textContent = caps ? el.textContent.toUpperCase() : el.textContent.toLowerCase();
       }
