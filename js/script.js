@@ -292,8 +292,8 @@ class Keyboard {
           }
           break;
         case 'Tab':
-          $this.output.value = `${outputBeforeSelection}    ${outputAfterSelection}`;
-          $this.output.setSelectionRange(selectionStart + 4, selectionStart + 4);
+          $this.output.value = `${outputBeforeSelection}\t${outputAfterSelection}`;
+          $this.output.setSelectionRange(selectionStart + 1, selectionStart + 1);
           break;
         case 'Del':
           if (noSelection) {
