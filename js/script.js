@@ -274,34 +274,34 @@ class Keyboard {
     let shiftClick = false;
     this.elements.main.addEventListener('click', (e) => {
       const targetContent = e.target.textContent;
-      const selectStart = $this.output.selectionStart;
-      const selectEnd = $this.output.selectionEnd;
+      const selectionStart = $this.output.selectionStart;
+      const selectionEnd = $this.output.selectionEnd;
       const output = $this.output.value;
-      const noSelection = selectStart === selectEnd;
-      const outputBeforeSelection = output.slice(0, selectStart);
-      const outputAfterSelection = output.slice(selectEnd);
+      const noSelection = selectionStart === selectionEnd;
+      const outputBeforeSelection = output.slice(0, selectionStart);
+      const outputAfterSelection = output.slice(selectionEnd);
       if (e.target.classList.contains('keyboard__key')) {
         switch (e.target.getAttribute('data-eng')) {
           case 'Backspace':
             if (noSelection) {
-              $this.output.value = output.slice(0, selectStart - 1) + outputAfterSelection;
-              $this.output.setSelectionRange(selectStart - 1, selectStart - 1);
+              $this.output.value = output.slice(0, selectionStart - 1) + outputAfterSelection;
+              $this.output.setSelectionRange(selectionStart - 1, selectionStart - 1);
             } else {
-              $this.output.value = outputBeforeSelection + output.slice(selectEnd);
-              $this.output.setSelectionRange(selectStart, selectStart);
+              $this.output.value = outputBeforeSelection + output.slice(selectionEnd);
+              $this.output.setSelectionRange(selectionStart, selectionStart);
             }
             break;
           case 'Tab':
             $this.output.value = `${outputBeforeSelection}    ${outputAfterSelection}`;
-            $this.output.setSelectionRange(selectStart + 4, selectStart + 4);
+            $this.output.setSelectionRange(selectionStart + 4, selectionStart + 4);
             break;
           case 'Del':
             if (noSelection) {
-              $this.output.value = outputBeforeSelection + output.slice(selectStart + 1);
-              $this.output.setSelectionRange(selectStart, selectStart);
+              $this.output.value = outputBeforeSelection + output.slice(selectionStart + 1);
+              $this.output.setSelectionRange(selectionStart, selectionStart);
             } else {
-              $this.output.value = outputBeforeSelection + output.slice(selectEnd);
-              $this.output.setSelectionRange(selectStart, selectStart);
+              $this.output.value = outputBeforeSelection + output.slice(selectionEnd);
+              $this.output.setSelectionRange(selectionStart, selectionStart);
             }
             break;
           case 'CapsLock':
@@ -318,7 +318,7 @@ class Keyboard {
             break;
           case 'Space':
             $this.output.value = `${outputBeforeSelection} ${outputAfterSelection}`;
-            $this.output.setSelectionRange(selectStart + 1, selectStart + 1);
+            $this.output.setSelectionRange(selectionStart + 1, selectionStart + 1);
             break;
           default:
             $this.output.value = outputBeforeSelection + targetContent + outputAfterSelection;
@@ -408,12 +408,12 @@ class Keyboard {
       // tab
       if (event.code === 'Tab') {
         const output = $this.output.value;
-        const selectStart = $this.output.selectionStart;
-        const outputBeforeSelection = output.slice(0, selectStart);
-        const outputAfterSelection = output.slice(selectStart);
+        const selectionStart = $this.output.selectionStart;
+        const outputBeforeSelection = output.slice(0, selectionStart);
+        const outputAfterSelection = output.slice(selectionStart);
         event.preventDefault();
         $this.output.value = `${outputBeforeSelection}    ${outputAfterSelection}`;
-        $this.output.setSelectionRange(selectStart + 4, selectStart + 4);
+        $this.output.setSelectionRange(selectionStart + 4, selectionStart + 4);
       }
       // language switch
       if (event.ctrlKey && event.code === 'AltLeft') {
