@@ -237,7 +237,7 @@ class Keyboard {
     this.elements.keys = document.querySelectorAll('.keyboard.main__keyboard > .keyboard__key');
 
     // actions handlers
-    this.buttonClickHandler();
+    this.bindButtonClickHandler();
     this.keyPressHandler();
   }
 
@@ -268,7 +268,7 @@ class Keyboard {
     fragment.appendChild(key);
   }
 
-  buttonClickHandler() {
+  bindButtonClickHandler() {
     // buttons click handler
     const $this = this;
     let shiftClick = false;
