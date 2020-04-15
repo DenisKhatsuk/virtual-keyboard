@@ -342,9 +342,8 @@ class Keyboard {
   }
 
   capsLockHandler() {
-    const $this = this;
     this.properties.capsLock = !this.properties.capsLock;
-    const caps = $this.properties.capsLock;
+    const caps = this.properties.capsLock;
     this.elements.keys.forEach((el) => {
       if (el.textContent.match(/^[a-zА-Яё]$/i)) {
         el.textContent = caps ? el.textContent.toUpperCase() : el.textContent.toLowerCase();
@@ -353,20 +352,18 @@ class Keyboard {
   }
 
   shiftHandler() {
-    const $this = this;
     let lang;
     let shift;
-    if ($this.properties.language === 'ENG') {
+    if (this.properties.language === 'ENG') {
       lang = 'data-eng';
       shift = 'data-engshift';
     } else {
       lang = 'data-ru';
       shift = 'data-rushift';
     }
-    $this.elements.keys.forEach((element) => {
-      const el = element;
-      const caps = $this.properties.capsLock;
-      if ($this.properties.shift) {
+    this.elements.keys.forEach((el) => {
+      const caps = this.properties.capsLock;
+      if (this.properties.shift) {
         if (el.getAttribute(shift) !== 'none') {
           el.textContent = caps ? el.getAttribute(shift).toLowerCase() : el.getAttribute(shift);
         } else {
