@@ -373,68 +373,68 @@ class Keyboard {
   }
 
   keyPressHandler() {
-    const $this = this;
     const capsLockButton = document.querySelector('[data-code="CapsLock"]');
 
     // key down
     document.addEventListener('keydown', (event) => {
       // highlight pressed button
-      $this.elements.keys.forEach((el) => {
+      this.elements.keys.forEach((el) => {
         if (el.getAttribute('data-code') === event.code && event.code !== 'CapsLock') el.classList.add('keyboard__key_active');
       });
       // CapsLock
       if (event.code === 'CapsLock') {
         capsLockButton.classList.toggle('keyboard__key_active');
-        $this.capsLockHandler();
+        this.capsLockHandler();
       }
       // shift
-      if ((event.code === 'ShiftLeft' || event.code === 'ShiftRight') && !$this.properties.shift) {
-          $this.properties.shift = true;
-          $this.shiftHandler();
+      if ((event.code === 'ShiftLeft' || event.code === 'ShiftRight') && !this.properties.shift) {
+          this.properties.shift = true;
+          this.shiftHandler();
       }
       // tab
       if (event.code === 'Tab') {
-        const output = $this.output.value;
-        const selectionStart = $this.output.selectionStart;
+        const output = this.output.value;
+        const selectionStart = this.output.selectionStart;
+        const selectionEnd = this.output.selectionEnd;
         const outputBeforeSelection = output.slice(0, selectionStart);
-        const outputAfterSelection = output.slice(selectionStart);
+        const outputAfterSelection = output.slice(selectionEnd);
         event.preventDefault();
-        $this.output.value = `${outputBeforeSelection}    ${outputAfterSelection}`;
-        $this.output.setSelectionRange(selectionStart + 4, selectionStart + 4);
+        this.output.value = `${outputBeforeSelection}\t${outputAfterSelection}`;
+        this.output.setSelectionRange(selectionStart + 1, selectionStart + 1);
       }
       // language switch
       if (event.ctrlKey && event.code === 'AltLeft') {
-        if (!$this.properties.languageSwitch) $this.properties.languageSwitch = true;
+        if (!this.properties.languageSwitch) this.properties.languageSwitch = true;
       }
       // current language detect
-      if (event.key.match(/^[А-Яё"№;%:?*.]$/i) && $this.properties.language === 'ENG') {
-        $this.properties.language = 'RU';
-        $this.setKeysValue();
+      if (event.key.match(/^[А-Яё"№;%:?*.]$/i) && this.properties.language === 'ENG') {
+        this.properties.language = 'RU';
+        this.setKeysValue();
       }
-      if (event.key.match(/^[a-z`~@#$&/]$/i) && $this.properties.language === 'RU') {
-        $this.properties.language = 'ENG';
-        $this.setKeysValue();
+      if (event.key.match(/^[a-z`~@#$&/]$/i) && this.properties.language === 'RU') {
+        this.properties.language = 'ENG';
+        this.setKeysValue();
       }
     });
 
     // key up
     document.addEventListener('keyup', (event) => {
-      $this.elements.keys.forEach((el) => {
+      this.elements.keys.forEach((el) => {
         if (el.getAttribute('data-code') === event.code && event.code !== 'CapsLock') el.classList.remove('keyboard__key_active');
       });
       // shift
       if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
-        $this.properties.shift = false;
-        $this.shiftHandler();
+        this.properties.shift = false;
+        this.shiftHandler();
       }
       // language switch
       if (event.altKey) {
-        if ($this.properties.languageSwitch) {
-          $this.properties.language = $this.properties.language === 'ENG' ? 'RU' : 'ENG';
-          localStorage.setItem('lang', $this.properties.language);
-          $this.properties.languageSwitch = false;
+        if (this.properties.languageSwitch) {
+          this.properties.language = this.properties.language === 'ENG' ? 'RU' : 'ENG';
+          localStorage.setItem('lang', this.properties.language);
+          this.properties.languageSwitch = false;
         }
-        $this.setKeysValue();
+        this.setKeysValue();
       }
     });
   }
