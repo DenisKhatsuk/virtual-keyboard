@@ -297,11 +297,10 @@ class Keyboard {
         case 'Del':
           if (noSelection) {
             this.output.value = outputBeforeSelection + output.slice(selectionStart + 1);
-            this.output.setSelectionRange(selectionStart, selectionStart);
           } else {
             this.output.value = outputBeforeSelection + output.slice(selectionEnd);
-            this.output.setSelectionRange(selectionStart, selectionStart);
           }
+          this.output.setSelectionRange(selectionStart, selectionStart);
           break;
         case 'CapsLock':
           e.target.classList.toggle('keyboard__key_active');
