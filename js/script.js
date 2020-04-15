@@ -82,7 +82,7 @@ class Keyboard {
         keyCode: 'KeyP', eng: 'p', engShift: 'P', ru: 'з', ruShift: 'З',
       },
       {
-        keyCode: 'BracketLeft', eng: '{', engShift: '{', ru: 'х', ruShift: 'Х',
+        keyCode: 'BracketLeft', eng: '[', engShift: '{', ru: 'х', ruShift: 'Х',
       },
       {
         keyCode: 'BracketRight', eng: ']', engShift: '}', ru: 'ъ', ruShift: 'Ъ',
