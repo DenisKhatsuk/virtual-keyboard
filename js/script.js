@@ -352,27 +352,22 @@ class Keyboard {
   }
 
   shiftHandler() {
-    let lang;
-    let shift;
-    if (this.properties.language === 'ENG') {
-      lang = 'data-eng';
-      shift = 'data-engshift';
-    } else {
-      lang = 'data-ru';
-      shift = 'data-rushift';
-    }
+    let keyData;
+    let keyDataShift;
+    keyData = this.properties.language === 'ENG' ? 'data-eng' : 'data-ru';
+    keyDataShift = this.properties.language === 'ENG' ? 'data-engshift' : 'data-rushift';
     this.elements.keys.forEach((el) => {
       const caps = this.properties.capsLock;
       if (this.properties.shift) {
-        if (el.getAttribute(shift) !== 'none') {
-          el.textContent = caps ? el.getAttribute(shift).toLowerCase() : el.getAttribute(shift);
+        if (el.getAttribute(keyDataShift) !== 'none') {
+          el.textContent = caps ? el.getAttribute(keyDataShift).toLowerCase() : el.getAttribute(keyDataShift);
         } else {
-          el.textContent = el.getAttribute(lang);
+          el.textContent = el.getAttribute(keyData);
         }
-      } else if (el.getAttribute(shift) !== 'none') {
-        el.textContent = caps ? el.getAttribute(lang).toUpperCase() : el.getAttribute(lang);
+      } else if (el.getAttribute(keyDataShift) !== 'none') {
+        el.textContent = caps ? el.getAttribute(keyData).toUpperCase() : el.getAttribute(keyData);
       } else {
-        el.textContent = el.getAttribute(lang);
+        el.textContent = el.getAttribute(keyData);
       }
     });
   }
