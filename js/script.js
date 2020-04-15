@@ -388,11 +388,9 @@ class Keyboard {
         $this.capsLockHandler();
       }
       // shift
-      if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
-        if (!$this.properties.shift) {
+      if ((event.code === 'ShiftLeft' || event.code === 'ShiftRight') && !$this.properties.shift) {
           $this.properties.shift = true;
           $this.shiftHandler();
-        }
       }
       // tab
       if (event.code === 'Tab') {
