@@ -270,46 +270,45 @@ class Keyboard {
 
   bindButtonClickHandler() {
     // buttons click handler
-    const $this = this;
     let shiftClick = false;
     this.elements.main.addEventListener('click', (e) => {
       if (!e.target.classList.contains('keyboard__key')) { return; }
       const targetContent = e.target.textContent;
-      const selectionStart = $this.output.selectionStart;
-      const selectionEnd = $this.output.selectionEnd;
-      const output = $this.output.value;
+      const selectionStart = this.output.selectionStart;
+      const selectionEnd = this.output.selectionEnd;
+      const output = this.output.value;
       const noSelection = selectionStart === selectionEnd;
       const outputBeforeSelection = output.slice(0, selectionStart);
       const outputAfterSelection = output.slice(selectionEnd);
       switch (e.target.getAttribute('data-eng')) {
         case 'Backspace':
           if (noSelection) {
-            $this.output.value = output.slice(0, selectionStart - 1) + outputAfterSelection;
-            $this.output.setSelectionRange(selectionStart - 1, selectionStart - 1);
+            this.output.value = output.slice(0, selectionStart - 1) + outputAfterSelection;
+            this.output.setSelectionRange(selectionStart - 1, selectionStart - 1);
           } else {
-            $this.output.value = outputBeforeSelection + output.slice(selectionEnd);
-            $this.output.setSelectionRange(selectionStart, selectionStart);
+            this.output.value = outputBeforeSelection + output.slice(selectionEnd);
+            this.output.setSelectionRange(selectionStart, selectionStart);
           }
           break;
         case 'Tab':
-          $this.output.value = `${outputBeforeSelection}\t${outputAfterSelection}`;
-          $this.output.setSelectionRange(selectionStart + 1, selectionStart + 1);
+          this.output.value = `${outputBeforeSelection}\t${outputAfterSelection}`;
+          this.output.setSelectionRange(selectionStart + 1, selectionStart + 1);
           break;
         case 'Del':
           if (noSelection) {
-            $this.output.value = outputBeforeSelection + output.slice(selectionStart + 1);
-            $this.output.setSelectionRange(selectionStart, selectionStart);
+            this.output.value = outputBeforeSelection + output.slice(selectionStart + 1);
+            this.output.setSelectionRange(selectionStart, selectionStart);
           } else {
-            $this.output.value = outputBeforeSelection + output.slice(selectionEnd);
-            $this.output.setSelectionRange(selectionStart, selectionStart);
+            this.output.value = outputBeforeSelection + output.slice(selectionEnd);
+            this.output.setSelectionRange(selectionStart, selectionStart);
           }
           break;
         case 'CapsLock':
           e.target.classList.toggle('keyboard__key_active');
-          $this.capsLockHandler();
+          this.capsLockHandler();
           break;
         case 'Enter':
-          $this.output.value = `${outputBeforeSelection}\n${outputAfterSelection}`;
+          this.output.value = `${outputBeforeSelection}\n${outputAfterSelection}`;
           break;
         case 'Shift':
         case 'Ctrl':
@@ -317,28 +316,28 @@ class Keyboard {
         case 'Alt':
           break;
         case 'Space':
-          $this.output.value = `${outputBeforeSelection} ${outputAfterSelection}`;
-          $this.output.setSelectionRange(selectionStart + 1, selectionStart + 1);
+          this.output.value = `${outputBeforeSelection} ${outputAfterSelection}`;
+          this.output.setSelectionRange(selectionStart + 1, selectionStart + 1);
           break;
         default:
-          $this.output.value = outputBeforeSelection + targetContent + outputAfterSelection;
+          this.output.value = outputBeforeSelection + targetContent + outputAfterSelection;
           break;
       }
       
     });
     // shift click handler
     this.elements.main.addEventListener('mousedown', (e) => {
-      if (!$this.properties.shift && e.target.getAttribute('data-eng') === 'Shift') {
-        $this.properties.shift = true;
+      if (!this.properties.shift && e.target.getAttribute('data-eng') === 'Shift') {
+        this.properties.shift = true;
         shiftClick = true;
-        $this.shiftHandler();
+        this.shiftHandler();
       }
     });
     this.elements.main.addEventListener('mouseup', () => {
       if (shiftClick) {
-        $this.properties.shift = false;
+        this.properties.shift = false;
         shiftClick = false;
-        $this.shiftHandler();
+        this.shiftHandler();
       }
     });
   }
