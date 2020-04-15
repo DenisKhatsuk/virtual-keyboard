@@ -273,6 +273,7 @@ class Keyboard {
     const $this = this;
     let shiftClick = false;
     this.elements.main.addEventListener('click', (e) => {
+      if (!e.target.classList.contains('keyboard__key')) { return; }
       const targetContent = e.target.textContent;
       const selectionStart = $this.output.selectionStart;
       const selectionEnd = $this.output.selectionEnd;
@@ -280,51 +281,50 @@ class Keyboard {
       const noSelection = selectionStart === selectionEnd;
       const outputBeforeSelection = output.slice(0, selectionStart);
       const outputAfterSelection = output.slice(selectionEnd);
-      if (e.target.classList.contains('keyboard__key')) {
-        switch (e.target.getAttribute('data-eng')) {
-          case 'Backspace':
-            if (noSelection) {
-              $this.output.value = output.slice(0, selectionStart - 1) + outputAfterSelection;
-              $this.output.setSelectionRange(selectionStart - 1, selectionStart - 1);
-            } else {
-              $this.output.value = outputBeforeSelection + output.slice(selectionEnd);
-              $this.output.setSelectionRange(selectionStart, selectionStart);
-            }
-            break;
-          case 'Tab':
-            $this.output.value = `${outputBeforeSelection}    ${outputAfterSelection}`;
-            $this.output.setSelectionRange(selectionStart + 4, selectionStart + 4);
-            break;
-          case 'Del':
-            if (noSelection) {
-              $this.output.value = outputBeforeSelection + output.slice(selectionStart + 1);
-              $this.output.setSelectionRange(selectionStart, selectionStart);
-            } else {
-              $this.output.value = outputBeforeSelection + output.slice(selectionEnd);
-              $this.output.setSelectionRange(selectionStart, selectionStart);
-            }
-            break;
-          case 'CapsLock':
-            e.target.classList.toggle('keyboard__key_active');
-            $this.capsLockHandler();
-            break;
-          case 'Enter':
-            $this.output.value = `${outputBeforeSelection}\n${outputAfterSelection}`;
-            break;
-          case 'Shift':
-          case 'Ctrl':
-          case 'Win':
-          case 'Alt':
-            break;
-          case 'Space':
-            $this.output.value = `${outputBeforeSelection} ${outputAfterSelection}`;
-            $this.output.setSelectionRange(selectionStart + 1, selectionStart + 1);
-            break;
-          default:
-            $this.output.value = outputBeforeSelection + targetContent + outputAfterSelection;
-            break;
-        }
+      switch (e.target.getAttribute('data-eng')) {
+        case 'Backspace':
+          if (noSelection) {
+            $this.output.value = output.slice(0, selectionStart - 1) + outputAfterSelection;
+            $this.output.setSelectionRange(selectionStart - 1, selectionStart - 1);
+          } else {
+            $this.output.value = outputBeforeSelection + output.slice(selectionEnd);
+            $this.output.setSelectionRange(selectionStart, selectionStart);
+          }
+          break;
+        case 'Tab':
+          $this.output.value = `${outputBeforeSelection}    ${outputAfterSelection}`;
+          $this.output.setSelectionRange(selectionStart + 4, selectionStart + 4);
+          break;
+        case 'Del':
+          if (noSelection) {
+            $this.output.value = outputBeforeSelection + output.slice(selectionStart + 1);
+            $this.output.setSelectionRange(selectionStart, selectionStart);
+          } else {
+            $this.output.value = outputBeforeSelection + output.slice(selectionEnd);
+            $this.output.setSelectionRange(selectionStart, selectionStart);
+          }
+          break;
+        case 'CapsLock':
+          e.target.classList.toggle('keyboard__key_active');
+          $this.capsLockHandler();
+          break;
+        case 'Enter':
+          $this.output.value = `${outputBeforeSelection}\n${outputAfterSelection}`;
+          break;
+        case 'Shift':
+        case 'Ctrl':
+        case 'Win':
+        case 'Alt':
+          break;
+        case 'Space':
+          $this.output.value = `${outputBeforeSelection} ${outputAfterSelection}`;
+          $this.output.setSelectionRange(selectionStart + 1, selectionStart + 1);
+          break;
+        default:
+          $this.output.value = outputBeforeSelection + targetContent + outputAfterSelection;
+          break;
       }
+      
     });
     // shift click handler
     this.elements.main.addEventListener('mousedown', (e) => {
