@@ -380,7 +380,7 @@ class Keyboard {
     document.addEventListener('keydown', (event) => {
       // highlight pressed button
       $this.elements.keys.forEach((el) => {
-        if (el.getAttribute('data-code') === event.code && !el.classList.contains('keyboard__key_active') && event.code !== 'CapsLock') el.classList.add('keyboard__key_active');
+        if (el.getAttribute('data-code') === event.code && event.code !== 'CapsLock') el.classList.add('keyboard__key_active');
       });
       // CapsLock
       if (event.code === 'CapsLock') {
