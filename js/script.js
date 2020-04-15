@@ -428,7 +428,7 @@ class Keyboard {
         this.shiftHandler();
       }
       // language switch
-      if (event.altKey) {
+      if (event.altKey || event.ctrlKey) {
         if (this.properties.languageSwitch) {
           this.properties.language = this.properties.language === 'ENG' ? 'RU' : 'ENG';
           localStorage.setItem('lang', this.properties.language);
